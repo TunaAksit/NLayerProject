@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace NLayerProject.Core.Services
 {
-    interface IProductService:IService<Product>
+   public interface IProductService:IService<Product>
     {
         Task<Product> GetWithCategoryByIdAsync(int productId);
         // dbye gitmeden barcde kontrol edebiliriz

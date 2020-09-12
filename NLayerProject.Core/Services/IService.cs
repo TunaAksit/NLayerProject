@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace NLayerProject.Core.Services
 {
-    interface IService<TEntity> where TEntity:class
+   public interface IService<TEntity> where TEntity:class
     {
         //ilerde db değişirse repositoryleri sadece değiştireceksin servis yine aynı kalacak
         Task<TEntity> GetByIdAsync(int Id);

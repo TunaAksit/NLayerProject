@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace NLayerProject.Core.Repositories
 {
-    interface ICategoryRepository:IRepository<Category>
+    public interface ICategoryRepository:IRepository<Category>
     {
         //IRepositoryi miras aldık. IRepository metotlarda default içinde gelecek
         //Ideye bağlı grubu ve baglı ürüleri dön

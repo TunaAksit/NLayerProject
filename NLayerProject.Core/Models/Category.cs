@@ -5,7 +5,7 @@ using System.Text;
 
 namespace NLayerProject.Core.Models
 {
-    class Category
+   public class Category
     {
         public Category()
         {
