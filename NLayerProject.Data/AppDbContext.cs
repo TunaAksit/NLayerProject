@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using NLayerProject.Core.Models;
 using NLayerProject.Data.Configurations;
+using NLayerProject.Data.Seeds;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -26,6 +27,11 @@ namespace NLayerProject.Data
             //modelBuilder.Entity<Product>().Property(x => x.Id).UseIdentityColumn();
             modelBuilder.ApplyConfiguration(new ProductConfiguration());
             modelBuilder.ApplyConfiguration(new CategoryConfiguration());
+
+            //tablo içindeki default dataları yine burada tablo içine basabilirdik ama Seed clası içinden alacağız
+            modelBuilder.ApplyConfiguration(new ProductSeed(new int[] { 1, 2 }));
+            modelBuilder.ApplyConfiguration(new CategorySeed(new int[] { 1, 2}));
+
         }
     }
 }
