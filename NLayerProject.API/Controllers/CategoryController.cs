@@ -42,6 +42,14 @@ namespace NLayerProject.API.Controllers
             var category = await _categoryService.GetByIdAsync(id);
             return Ok(_mapper.Map<CategoryDto>(category));
         }
+        [HttpGet("{id}/products")]
+        public async Task<IActionResult> GetWithProductsById(int id)
+        {
+            var category = await _categoryService.GetWithProductByIdAsync(id);
+
+            return Ok(_mapper.Map<CategoryWithProductsDto>(category));
+
+        }
 
         [HttpPost]
         public async Task <IActionResult> Save(CategoryDto categoryDto)
@@ -66,6 +74,8 @@ namespace NLayerProject.API.Controllers
             return NoContent();
 
         }
+
+        
 
     }
 }
