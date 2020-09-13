@@ -3,6 +3,7 @@ using NLayerProject.Core.Models;
 using NLayerProject.Core.Repositories;
 using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -19,6 +20,11 @@ namespace NLayerProject.Data.Repositories
         public async Task<Category> GetWithProductByIdAsync(int categoryId)
         {
             return await _appDbContext.Categories.Include(x => x.Products).SingleOrDefaultAsync(x => x.Id == categoryId);
+        }
+
+        public Task<Product> SingleOrDefaultAsync(Expression<Func<Product, bool>> predicate)
+        {
+            throw new NotImplementedException();
         }
     }
 }
