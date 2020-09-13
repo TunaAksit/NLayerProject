@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace NLayerProject.Data.UnitOfWorks
 {
-    class UnitOfWork : IUnitOfWork
+   public class UnitOfWork : IUnitOfWork
 
     {
         private readonly AppDbContext _context;

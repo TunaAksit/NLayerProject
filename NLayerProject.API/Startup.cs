@@ -6,10 +6,14 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using NLayerProject.Core.UnitOfWorks;
+using NLayerProject.Data;
+using NLayerProject.Data.UnitOfWorks;
 
 namespace NLayerProject.API
 {
@@ -25,6 +29,19 @@ namespace NLayerProject.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //data katmanýnda dbcontex içinde tanýmladýðýmýz optionsu burada vereceðiz.
+
+            services.AddDbContext<AppDbContext>(optios =>
+            {
+                optios.UseSqlServer(Configuration["ConnectionsStings:SqlConSt"].ToString());
+            });
+
+
+            //AddScoped bir request sýrasýnda bir clasýn constunda IUnitOfWork ile karþýlasýrsa gidecek UnitOfWork ten birtane nesne örneði alýcak
+            //bir request sýrasýnda birden fasla IUnitOfWork ile karþýlaþýrsa ayný nesne örneði üzerinden devam edecek
+            //performans için çok faydalý
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+
             services.AddControllers();
         }
 
