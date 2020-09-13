@@ -35,11 +35,11 @@ namespace NLayerProject.API.Controllers
 
 
         }
-        [HttpGet("{Id}")]
-        public async Task <IActionResult> GetById(int Id)
+        [HttpGet("{id}")]
+        public async Task <IActionResult> GetById(int id)
         {
             //idleri kontrol etmek için filter kullanıcaz
-            var category = await _categoryService.GetByIdAsync(Id);
+            var category = await _categoryService.GetByIdAsync(id);
             return Ok(_mapper.Map<CategoryDto>(category));
         }
 
@@ -58,7 +58,14 @@ namespace NLayerProject.API.Controllers
             return NoContent();
             
         }
+        [HttpDelete("{id}")]
+        public IActionResult Remove (int id)
+        {
+            var category = _categoryService.GetByIdAsync(id).Result;
+            _categoryService.Remove(category);
+            return NoContent();
 
+        }
 
     }
 }
