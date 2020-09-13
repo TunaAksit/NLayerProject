@@ -13,7 +13,7 @@ namespace NLayerProject.Core.Repositories
         //tüm veriler
         Task<IEnumerable<TEntity>> GetAllAsync();
         //find(x=>x.id=2) diye çağırcaz bu metodu
-        Task <IEnumerable<TEntity>> Find(Expression<Func<TEntity, bool>> predicate);
+        IEnumerable<TEntity> Where(Expression<Func<TEntity, bool>> predicate);
         //category.SingleOrDefault(x=>x.name="kalem") delfault olarak ilk olanı gelecek.
         Task<TEntity> SingleOrDefaultAsync(Expression<Func<TEntity, bool>> predicate);
         //bir kayıt kaydet
