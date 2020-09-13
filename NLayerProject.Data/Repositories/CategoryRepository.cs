@@ -8,16 +8,17 @@ using System.Threading.Tasks;
 
 namespace NLayerProject.Data.Repositories
 {
-    public class ProductRepository : Repository<Product>, IProductRepository
+    class CategoryRepository : Repository<Category>, ICategoryRepository
     {
         private AppDbContext _appDbContext { get => _context as AppDbContext; }
-        public ProductRepository(DbContext context) : base(context)
+
+        public CategoryRepository(DbContext context) : base(context)
         {
         }
 
-        public async Task<Product> GetWithCategoryByIdAsync(int productId)
+        public async Task<Category> GetWithProductByIdAsync(int categoryId)
         {
-            return await  _appDbContext.products.Include(x => x.Category).SingleOrDefaultAsync(x => x.Id == productId);
+            return await _appDbContext.Categories.Include(x => x.Products).SingleOrDefaultAsync(x => x.Id == categoryId);
         }
     }
 }
