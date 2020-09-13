@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace NLayerProject.Data.Repositories
 {
-    class CategoryRepository : Repository<Category>, ICategoryRepository
+    public class CategoryRepository : Repository<Category>, ICategoryRepository
     {
         private AppDbContext _appDbContext { get => _context as AppDbContext; }
 

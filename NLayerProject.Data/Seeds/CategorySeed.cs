@@ -7,7 +7,7 @@ using System.Text;
 
 namespace NLayerProject.Data.Seeds
 {
-    class CategorySeed:IEntityTypeConfiguration<Category>
+    public class CategorySeed:IEntityTypeConfiguration<Category>
     {
         private readonly int[] _ids;
         public CategorySeed(int[] ids)

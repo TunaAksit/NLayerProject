@@ -33,7 +33,12 @@ namespace NLayerProject.API
 
             services.AddDbContext<AppDbContext>(optios =>
             {
-                optios.UseSqlServer(Configuration["ConnectionsStings:SqlConSt"].ToString());
+                //AppDbContext Data katmanýnda olduðu için MigrationsAssembly parametresini UseSqlServer optionsta veriyoruz veriyoruz
+                optios.UseSqlServer(Configuration["ConnectionsStings:SqlConStr"].ToString(), o =>
+                {
+                    o.MigrationsAssembly("NLayerProject.Data");
+                    //Migrations iþlemi için Microsoft.EntityFrameworkCore.Design paketini projeye ekledik
+                });
             });
 
 

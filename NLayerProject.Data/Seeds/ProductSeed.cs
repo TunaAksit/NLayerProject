@@ -8,7 +8,7 @@ using System.Text;
 
 namespace NLayerProject.Data.Seeds
 {
-    class ProductSeed:IEntityTypeConfiguration<Product>
+    public class ProductSeed:IEntityTypeConfiguration<Product>
     {
         private readonly int[] _ids;
 

@@ -12,9 +12,8 @@ namespace NLayerProject.Data
     {
         //optionsu startup ta contexti dolduruyor olacağız.
         //dbye karşılık gelir
-        public AppDbContext(DbContextOptions<AppDbContext> options):base(options)
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
-                
         }
         //dbset tablolara karşılık gelir
         public DbSet<Category> Categories{ get; set; }
