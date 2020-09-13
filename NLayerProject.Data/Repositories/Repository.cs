@@ -17,7 +17,7 @@ namespace NLayerProject.Data.Repositories
         protected readonly DbContext _context;
         private readonly DbSet<TEntity> _dbSet;
 
-        public Repository(DbContext context)
+        public Repository(AppDbContext context)
         {
             //_context ile veri tabanına erişirim
             //_dbSet ile de tablolara erişmiş olurum, TEntitiy ne gelirse o Entity üzerinde işlem yapmış olacağım.
