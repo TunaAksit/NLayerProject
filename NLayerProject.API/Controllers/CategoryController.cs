@@ -34,5 +34,12 @@ namespace NLayerProject.API.Controllers
 
 
         }
+        [HttpGet("{Id}")]
+        public async Task <IActionResult> GetById(int Id)
+        {
+            //idleri kontrol etmek için filter kullanıcaz
+            var category = await _categoryService.GetByIdAsync(Id);
+            return Ok(_mapper.Map<CategoryDto>(category));
+        }
     }
 }
