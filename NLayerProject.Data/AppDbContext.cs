@@ -19,6 +19,7 @@ namespace NLayerProject.Data
         public DbSet<Category> Categories{ get; set; }
         public DbSet <Product> products { get; set; }
         //veri tabanında tablolar oluşmadan önce çalışacak method
+        public DbSet <Person> Person { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //identfy olacakmı kolon uzunları ne olacak gibi bilgileri belirticez
@@ -30,6 +31,12 @@ namespace NLayerProject.Data
             //tablo içindeki default dataları yine burada tablo içine basabilirdik ama Seed clası içinden alacağız
             modelBuilder.ApplyConfiguration(new ProductSeed(new int[] { 1, 2 }));
             modelBuilder.ApplyConfiguration(new CategorySeed(new int[] { 1, 2}));
+
+            //Configuration içine tanımlalmız doğru olan boyle kotu
+            modelBuilder.Entity<Person>().HasKey(x => x.Id);
+            modelBuilder.Entity<Person>().Property(x => x.Id).UseIdentityColumn();
+            modelBuilder.Entity<Person>().Property(x => x.Name).HasMaxLength(100);
+            modelBuilder.Entity<Person>().Property(x => x.SurName).HasMaxLength(100);
 
         }
     }
