@@ -23,7 +23,7 @@ namespace NLayerProject.API.Controllers
         {
             _productService = productService;
             _mapper = mapper;
-        
+
         }
         [HttpGet]
         public async Task<IActionResult> GetAll()
@@ -40,6 +40,16 @@ namespace NLayerProject.API.Controllers
             var product = await _productService.GetByIdAsync(id);
             return Ok(_mapper.Map<ProductDto>(product));
         }
+
+        [HttpGet("{id}/category")]
+        public async Task<IActionResult>GetWithCategoryById(int id)
+        {
+            var product = await _productService.GetWithCategoryByIdAsync(id);
+            return Ok(_mapper.Map<ProductWithCategoryDto>(product));
+
+        }
+   
+
 
         [HttpPost]
         public async Task <IActionResult> Save (ProductDto productDto)
