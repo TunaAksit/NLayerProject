@@ -26,6 +26,7 @@ namespace NLayerProject.API.Controllers
             _mapper = mapper;
 
         }
+        
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
@@ -34,6 +35,9 @@ namespace NLayerProject.API.Controllers
 
 
         }
+        
+        
+        [ServiceFilter(typeof(ProductNotFoundFilter))]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
@@ -42,6 +46,8 @@ namespace NLayerProject.API.Controllers
             return Ok(_mapper.Map<ProductDto>(product));
         }
 
+        
+        [ServiceFilter(typeof(ProductNotFoundFilter))]
         [HttpGet("{id}/category")]
         public async Task<IActionResult>GetWithCategoryById(int id)
         {
@@ -51,7 +57,7 @@ namespace NLayerProject.API.Controllers
         }
 
 
-        [ValidationFilter]
+        // [ValidationFilter] i merkezilerştirmek için starupa koyduk
         [HttpPost]
         public async Task <IActionResult> Save (ProductDto productDto)
         {
@@ -68,6 +74,7 @@ namespace NLayerProject.API.Controllers
 
         }
 
+        [ServiceFilter(typeof(ProductNotFoundFilter))]
         [HttpDelete("{id}")]
         public IActionResult Remove(int id)
         {
