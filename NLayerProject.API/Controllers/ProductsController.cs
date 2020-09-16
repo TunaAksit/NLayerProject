@@ -30,6 +30,7 @@ namespace NLayerProject.API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
+           
             var products = await _productService.GetAllAsync();
             return Ok(_mapper.Map<IEnumerable<ProductDto>>(products));
 
@@ -69,6 +70,13 @@ namespace NLayerProject.API.Controllers
         [HttpPut]
         public IActionResult Update (ProductDto productDto)
         {
+
+            //uygun olanı UpdatteProductDto oluşturup bunun Idsine requid olmaktır
+            if (string.IsNullOrEmpty(productDto.Id.ToString()) || productDto.Id<=0)
+            {
+                throw new Exception("Id alanı gereklidir");
+            }
+            
             var product = _productService.Update(_mapper.Map<Product>(productDto));
             return NoContent();
 
