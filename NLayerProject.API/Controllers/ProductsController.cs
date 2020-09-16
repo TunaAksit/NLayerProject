@@ -72,10 +72,10 @@ namespace NLayerProject.API.Controllers
         {
 
             //uygun olanı UpdatteProductDto oluşturup bunun Idsine requid olmaktır
-            if (string.IsNullOrEmpty(productDto.Id.ToString()) || productDto.Id<=0)
-            {
-                throw new Exception("Id alanı gereklidir");
-            }
+            //if (string.IsNullOrEmpty(productDto.Id.ToString()) || productDto.Id<=0)
+            //{
+            //    throw new Exception("Id alanı gereklidir");
+            //}
             
             var product = _productService.Update(_mapper.Map<Product>(productDto));
             return NoContent();
